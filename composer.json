@@ -1,0 +1,54 @@
+{
+    "name": "springboardvr/laravel-ably-broadcaster",
+    "description": "An Ably broadcaster for Laravel",
+    "keywords": [
+        "springboardvr",
+        "laravel-ably-broadcaster",
+        "ably",
+        "laravel-broadcaster"
+    ],
+    "homepage": "https://github.com/springboardvr/laravel-ably-broadcaster",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Matthew Hall",
+            "email": "matthew@springboardvr.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "ably/ably-php": "^1.1",
+        "illuminate/support": "5.7.* || 5.8.* || ^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SpringboardVR\\LaravelAblyBroadcaster\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SpringboardVR\\LaravelAblyBroadcaster\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SpringboardVR\\LaravelAblyBroadcaster\\LaravelAblyBroadcasterServiceProvider"
+            ]
+        }
+    }
+}
