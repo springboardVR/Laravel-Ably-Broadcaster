@@ -61,41 +61,48 @@ class AblyBroadcaster extends Broadcaster
      */
     public function validAuthenticationResponse($request, $result)
     {
-        // TODO: Implement Auth for Ably
-//        if (Str::startsWith($request->channel_name, 'private')) {
-//            return $this->decodeAblyResponse(
-//                $request, $this->ably->socket_auth($request->channel_name, $request->socket_id)
-//            );
-//        }
-//
-//        $channelName = $this->normalizeChannelName($request->channel_name);
-//
-//        return $this->decodeAblyResponse(
-//            $request,
-//            $this->ably->presence_auth(
-//                $request->channel_name, $request->socket_id,
-//                $this->retrieveUser($request, $channelName)->getAuthIdentifier(), $result
-//            )
-//        );
+        if (Str::startsWith($request->channel_name, 'private')) {
+            $signature = $this->generateAblySignature($request->channel_name, $request->socket_id);
+            return ['auth' => $this->getPublicToken() . ':' . $signature];
+        }
+
+        $channelName = $this->normalizeChannelName($request->channel_name);
+        $userId = $this->retrieveUser($request, $channelName)->getAuthIdentifier();
+
+        $userData = [
+            'user_id' => $userId,
+        ];
+
+        if ($result) {
+            $userData['user_info'] = $result;
+        }
+
+        $signature = $this->generateAblySignature($request->channel_name, $request->socket_id, $userData);
+
+        return [
+            'auth' => $this->getPublicToken() . ':' . $signature,
+            'channel_data' => json_encode($userData),
+        ];
     }
 
     /**
-     * Decode the given Ably response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $response
-     * @return array
+     * Generate the Signature for Ably auth headers
+     * @param $channelName
+     * @param $socketId
+     * @param null $userData
+     * @return string
      */
-    protected function decodeAblyResponse($request, $response)
+    public function generateAblySignature($channelName, $socketId, $userData = null)
     {
+        $privateToken = $this->getPrivateToken();
 
-        // TODO: Decode Ably Auth Checks
-//        if (! $request->input('callback', false)) {
-//            return json_decode($response, true);
-//        }
-//
-//        return response()->json(json_decode($response, true))
-//            ->withCallback($request->callback);
+        $signature = $socketId .':' . $channelName;
+
+        if ($userData) {
+            $signature .= ':' . json_encode($userData);
+        }
+
+        return hash_hmac('sha256',$signature, $privateToken);
     }
 
     /**
@@ -112,6 +119,24 @@ class AblyBroadcaster extends Broadcaster
             $ablyChannel = $this->ably->channels->get($channel);
             $ablyChannel->publish($event, $payload);
         }
+    }
+
+    /**
+     * Get the Public Token Value out of the Ably key
+     * @return mixed
+     */
+    public function getPublicToken()
+    {
+        return Str::before($this->ably->options->key, ':');
+    }
+
+    /**
+     * Get the Private Token value out of the Ably Key
+     * @return mixed
+     */
+    public function getPrivateToken()
+    {
+        return Str::after($this->ably->options->key, ':');
     }
 
     /**

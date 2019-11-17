@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/springboardvr/laravel-ably-broadcaster.svg?style=flat-square)](https://scrutinizer-ci.com/g/springboardvr/laravel-ably-broadcaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/springboardvr/laravel-ably-broadcaster.svg?style=flat-square)](https://packagist.org/packages/springboardvr/laravel-ably-broadcaster)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Adding support for the [Ably](https://ably.io) broadcaster to Laravel! This uses the native Ably PHP SDK rather then the Pusher interop layer in the server side but still requires the Pusher interop in Laravel Echo.
 
 ## Installation
 
@@ -21,7 +21,14 @@ Then you need to add Ably to your `broadcasting.php` config file under `connecti
         'ably' => [
             'driver' => 'ably',
             'key' => env('ABLY_KEY'),
-        ]
+        ],
+```
+
+Set
+```bash
+BROADCAST_DRIVER=ably
+ABLY_KEY=
+MIX_ABLY_KEY=
 ```
 
 Once you've setup an account with [Ably](https://www.ably.io/)
@@ -37,21 +44,16 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'appid.keyid',
+    key: process.env.MIX_ABLY_KEY,
     wsHost: 'realtime-pusher.ably.io',
     wsPort: 443,
     disableStats: true,
+    encrypted: true,
 });
 ```
 
-## Usage
-
-``` php
-// Usage description here
-```
-
 ### Testing
-
+Currently there is only basic unit tests based on the Laravel Pusher Broadcaster tests. To run them just use:
 ``` bash
 composer test
 ```

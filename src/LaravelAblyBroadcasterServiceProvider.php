@@ -14,9 +14,9 @@ class LaravelAblyBroadcasterServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Broadcast::extend('ably', function () {
+        Broadcast::extend('ably', function ($broadcasting, $config) {
             return new AblyBroadcaster(
-                new AblyRest(config('broadcasting.connections.ably.key'))
+                new AblyRest($config)
             );
         });
     }
