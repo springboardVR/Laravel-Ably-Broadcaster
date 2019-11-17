@@ -7,6 +7,7 @@ use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use SpringboardVR\LaravelAblyBroadcaster\AblyBroadcaster;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use SpringboardVR\LaravelAblyBroadcaster\Tests\Factories\TestApp;
 
 class AblyBroadcasterTest extends TestCase
 {
@@ -21,7 +22,7 @@ class AblyBroadcasterTest extends TestCase
     {
         parent::setUp();
 
-        $this->ably = m::mock('Ably\AblyRest');
+        $this->ably = new TestApp();
         $this->broadcaster = m::mock(AblyBroadcaster::class, [$this->ably])->makePartial();
     }
 
