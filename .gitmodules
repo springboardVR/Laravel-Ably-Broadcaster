@@ -1,3 +1,0 @@
-[submodule "ably-common"]
-	path = ably-common
-	url = https://github.com/ably/ably-common

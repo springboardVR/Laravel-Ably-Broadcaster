@@ -71,7 +71,6 @@ window.Echo = new Echo({
 That's it! Public, Private, and Presence channels will all work as with Pusher.
 
 ### Testing
-Currently there is only basic unit tests based on the Laravel Pusher Broadcaster tests. To run them:
 ``` bash
 composer test
 ```
@@ -79,6 +78,7 @@ composer test
 ### Limitations
 - Currently in the frontend it is using the PusherJS library rather then the Ably library. We will be evaluating adding support for this library to Laravel Echo in the future.
 - When you are broadcasting to multiple channels we aren't yet using the [Bulk Publish](https://www.ably.io/documentation/rest-api/beta#batch-publish) endpoints. Once these are moved out of Beta we will update the library to support them.
+- Limited testing! Needs to be expanded to cover the Auth functions. 
 
 ### Changelog
 

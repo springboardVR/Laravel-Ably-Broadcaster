@@ -7,7 +7,6 @@ use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use SpringboardVR\LaravelAblyBroadcaster\AblyBroadcaster;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use SpringboardVR\LaravelAblyBroadcaster\Tests\Factories\TestApp;
 
 class AblyBroadcasterTest extends TestCase
 {
@@ -22,7 +21,9 @@ class AblyBroadcasterTest extends TestCase
     {
         parent::setUp();
 
-        $this->ably = new TestApp();
+        $this->ably = m::mock('Ably\AblyRest');
+        $this->ably->options = (object) ['key' => 'abcd:efgh'];
+
         $this->broadcaster = m::mock(AblyBroadcaster::class, [$this->ably])->makePartial();
     }
 
@@ -104,46 +105,6 @@ class AblyBroadcasterTest extends TestCase
 
         $this->broadcaster->auth(
             $this->getMockRequestWithoutUserForChannel('presence-test')
-        );
-    }
-
-    public function testValidAuthenticationResponseCallAblySocketAuthMethodWithPrivateChannel()
-    {
-        $request = $this->getMockRequestWithUserForChannel('private-test');
-
-        $data = [
-            'auth' => 'abcd:efgh',
-        ];
-
-        $this->ably->shouldReceive('socket_auth')
-            ->once()
-            ->andReturn(json_encode($data));
-
-        $this->assertEquals(
-            $data,
-            $this->broadcaster->validAuthenticationResponse($request, true)
-        );
-    }
-
-    public function testValidAuthenticationResponseCallAblyPresenceAuthMethodWithPresenceChannel()
-    {
-        $request = $this->getMockRequestWithUserForChannel('presence-test');
-
-        $data = [
-            'auth' => 'abcd:efgh',
-            'channel_data' => [
-                'user_id' => 42,
-                'user_info' => [1, 2, 3, 4],
-            ],
-        ];
-
-        $this->ably->shouldReceive('presence_auth')
-            ->once()
-            ->andReturn(json_encode($data));
-
-        $this->assertEquals(
-            $data,
-            $this->broadcaster->validAuthenticationResponse($request, true)
         );
     }
 

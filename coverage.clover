@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1574016266">
+  <project timestamp="1574016266">
+    <package name="SpringboardVR\LaravelAblyBroadcaster">
+      <file name="/Users/matt/Git/springboardvr/Laravel-Ably-Broadcaster/src/AblyBroadcaster.php">
+        <class name="SpringboardVR\LaravelAblyBroadcaster\AblyBroadcaster" namespace="SpringboardVR\LaravelAblyBroadcaster">
+          <metrics complexity="14" methods="8" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="8" elements="39" coveredelements="10"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="30" type="stmt" count="4"/>
+        <line num="31" type="stmt" count="4"/>
+        <line num="41" type="method" name="auth" visibility="public" complexity="3" crap="3" count="4"/>
+        <line num="43" type="stmt" count="4"/>
+        <line num="45" type="stmt" count="4"/>
+        <line num="46" type="stmt" count="4"/>
+        <line num="47" type="stmt" count="2"/>
+        <line num="50" type="stmt" count="2"/>
+        <line num="51" type="stmt" count="2"/>
+        <line num="62" type="method" name="validAuthenticationResponse" visibility="public" complexity="3" crap="12.00" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="84" type="stmt" count="0"/>
+        <line num="95" type="method" name="generateAblySignature" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="97" type="stmt" count="0"/>
+        <line num="99" type="stmt" count="0"/>
+        <line num="101" type="stmt" count="0"/>
+        <line num="102" type="stmt" count="0"/>
+        <line num="105" type="stmt" count="0"/>
+        <line num="116" type="method" name="broadcast" visibility="public" complexity="2" crap="6.00" count="0"/>
+        <line num="118" type="stmt" count="0"/>
+        <line num="119" type="stmt" count="0"/>
+        <line num="120" type="stmt" count="0"/>
+        <line num="122" type="stmt" count="0"/>
+        <line num="128" type="method" name="getPublicToken" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="130" type="stmt" count="0"/>
+        <line num="137" type="method" name="getPrivateToken" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="139" type="stmt" count="0"/>
+        <line num="147" type="method" name="getAbly" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="149" type="stmt" count="0"/>
+        <metrics loc="151" ncloc="97" classes="1" methods="8" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="8" elements="39" coveredelements="10"/>
+      </file>
+      <file name="/Users/matt/Git/springboardvr/Laravel-Ably-Broadcaster/src/LaravelAblyBroadcasterServiceProvider.php">
+        <class name="SpringboardVR\LaravelAblyBroadcaster\LaravelAblyBroadcasterServiceProvider" namespace="SpringboardVR\LaravelAblyBroadcaster">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="7" coveredelements="0"/>
+        </class>
+        <line num="15" type="method" name="boot" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="16" type="stmt" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="19" type="stmt" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <line num="21" type="stmt" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <metrics loc="24" ncloc="21" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="7" coveredelements="0"/>
+      </file>
+      <file name="/Users/matt/Git/springboardvr/Laravel-Ably-Broadcaster/src/UseAblyChannelConventions.php">
+        <class name="UseAblyChannelConventions" namespace="SpringboardVR\LaravelAblyBroadcaster">
+          <metrics complexity="7" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="5" elements="16" coveredelements="6"/>
+        </class>
+        <line num="15" type="method" name="isGuardedChannel" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="17" type="stmt" count="4"/>
+        <line num="26" type="method" name="normalizeChannelName" visibility="public" complexity="3" crap="3.07" count="4"/>
+        <line num="28" type="stmt" count="4"/>
+        <line num="29" type="stmt" count="4"/>
+        <line num="30" type="stmt" count="2"/>
+        <line num="31" type="stmt" count="4"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="43" type="method" name="formatChannels" visibility="protected" complexity="3" crap="12.00" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <metrics loc="55" ncloc="37" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="5" elements="16" coveredelements="6"/>
+      </file>
+    </package>
+    <metrics files="3" loc="230" ncloc="155" classes="3" methods="12" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="50" coveredstatements="13" elements="62" coveredelements="16"/>
+  </project>
+</coverage>
